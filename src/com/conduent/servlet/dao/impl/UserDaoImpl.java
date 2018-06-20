@@ -18,6 +18,8 @@ public class UserDaoImpl implements UserDao {
 	String SELECT_QUERY_BASED_ON_USERNAME = "select * from T_USER where username=?";
 	String SELECT_QUERY_BASED_ON_ID = "select * from T_USER where id=?";
 	String INSERT_QUERY = "INSERT INTO T_USER (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD, CREATED_DATE) VALUES (?,?,?,?,?)";
+	
+	//modify the query to include all fields. and change where condition based on id.
 	String UPDATE_QUERY = "update T_User set password=? where username=?";
 	String DELETE_QUERY = "DELETE FROM T_USER WHERE ID=?";
 
