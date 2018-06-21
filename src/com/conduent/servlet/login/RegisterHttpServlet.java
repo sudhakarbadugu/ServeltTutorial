@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.conduent.servlet.service.UserService;
+import com.conduent.servlet.service.impl.UserException;
 import com.conduent.servlet.service.impl.UserServiceImpl;
 import com.conduent.servlet.user.dto.UserDto;
 
@@ -40,13 +41,22 @@ public class RegisterHttpServlet extends HttpServlet {
 		boolean addUser = false;
 		String message = null;
 		try {
+			//show error to user when trying to edit the same name
 			if (username != null && password != null) {
 				String userId = req.getParameter("userId");
 				if (userId != null && !"-1".equals(userId)) {
 					dto.setId(Integer.parseInt(userId));
-					addUser = service.updateUser(dto);
+					try {
+						addUser = service.updateUser(dto);
+						}catch(UserException e) {
+							req.setAttribute("errormassage", e.getMessage());
+						}
 				} else {
-					addUser = service.addUser(dto);
+					try {
+						addUser = service.addUser(dto);
+						}catch(UserException e) {
+							req.setAttribute("errormassage", e.getMessage());
+						}
 				}
 			}
 		} catch (Exception e) {
@@ -67,7 +77,6 @@ public class RegisterHttpServlet extends HttpServlet {
 				requestDispatcher.forward(req, resp);
 			}
 		}
-
 	}
 
 }

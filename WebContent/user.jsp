@@ -15,7 +15,7 @@
 %> 
 <% String username = "Sudhakar"; 
 
-int i = 10/0;
+//int i = 10/0;
 %>
 <%= getCount() %>
 <%= UsersServlet.getValue() %>
@@ -35,4 +35,3 @@ Init params
 	<input type="text" name="name">
 	<input type="submit" value="Go">
 </form>
-

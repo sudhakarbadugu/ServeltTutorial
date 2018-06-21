@@ -28,6 +28,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean addUser(UserDto dto) {
 		UserDao dao = new UserDaoImpl();
+		UserDto existingUser = dao.getUser(dto.getUsername());
+		if(existingUser!=null) {
+			throw new UserException("user already exist with given username: "+dto.getUsername());
+		}
 
 		boolean user = dao.insertUser(dto);
 		return user;
@@ -44,6 +48,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean updateUser(UserDto dto) {
 		UserDao dao = new UserDaoImpl();
+		UserDto existingUser = dao.getUser(dto.getUsername());
+		if(existingUser!=null && existingUser.getId() != dto.getId()) {
+			throw new UserException("user already exist with given username: "+dto.getUsername());
+		}
 		boolean updateUser = dao.updateUser(dto);
 		return updateUser;
 	}

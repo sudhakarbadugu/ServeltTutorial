@@ -20,10 +20,9 @@ public class UserDaoImpl implements UserDao {
 	String INSERT_QUERY = "INSERT INTO T_USER (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD, CREATED_DATE) VALUES (?,?,?,?,?)";
 	
 	//modify the query to include all fields. and change where condition based on id.
-	String UPDATE_QUERY = "update T_User set password=? where username=?";
+	String UPDATE_QUERY = "UPDATE T_USER SET FIRST_NAME=?,LAST_NAME=?,PASSWORD=? WHERE USERNAME=?";
 	String DELETE_QUERY = "DELETE FROM T_USER WHERE ID=?";
 
-	List<UserDto> list = new ArrayList<UserDto>();
 
 	@Override
 	public UserDto getUser(String username, String password) {
@@ -49,7 +48,6 @@ public class UserDaoImpl implements UserDao {
 				dto.setPassword(password1);
 				dto.setFirstName(firstname);
 				dto.setLastName(lastname);
-				// list.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,6 +61,8 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<UserDto> getAlUser() {
+		List<UserDto> list = new ArrayList<UserDto>();
+
 		UserDto dto = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -142,10 +142,14 @@ public class UserDaoImpl implements UserDao {
 		try {
 			con = DatatbaseUtility.getConnection();
 			pstmt = con.prepareStatement(UPDATE_QUERY);
+			String firstName = dto.getFirstName();
+			String lastName = dto.getLastName();
 			String password = dto.getPassword();
 			String username = dto.getUsername();
-			pstmt.setString(1, password);
-			pstmt.setString(2, username);
+			pstmt.setString(1, firstName);
+			pstmt.setString(2, lastName);
+			pstmt.setString(3, password);
+			pstmt.setString(4, username);
 			int result = pstmt.executeUpdate();
 			userupdated = result != 0;
 		} catch (SQLException e) {

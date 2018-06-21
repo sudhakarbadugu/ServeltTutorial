@@ -1,4 +1,4 @@
-<%@ page session="false" %>
+<%@ page session="false" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,12 +20,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                        <%
-                        if(null!=request.getAttribute("username"))
-                            {
-                                out.println(request.getAttribute("username"));
-                            }
-                        %>
+                       ${username}
                 </a>
             </li>
             <li class="nav-item">

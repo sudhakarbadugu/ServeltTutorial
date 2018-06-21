@@ -35,7 +35,7 @@ public class GroupServlet extends HttpServlet {
 				sg.deleteGroup(dto);
 			} else if ("edit".equalsIgnoreCase(operation)) {
 
-				req.setAttribute("edit", sg.getGroup(Integer.parseInt(id)));
+				req.setAttribute("groupDto", sg.getGroup(Integer.parseInt(id)));
 			}
 			req.setAttribute("operation", operation);
 		}

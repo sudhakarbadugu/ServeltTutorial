@@ -35,7 +35,7 @@ public class UsersServlet extends HttpServlet {
 			if ("delete".equals(operation))
 				users.deleteUser(dto);
 			else if("edit".equalsIgnoreCase(operation)) {
-				req.setAttribute("edit", users.getUser(Integer.parseInt(id)));
+				req.setAttribute("userDto", users.getUser(Integer.parseInt(id)));
 				req.setAttribute("operation", operation);
 				RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
 				requestDispatcher.forward(req, resp);
