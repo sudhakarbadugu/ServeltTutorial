@@ -196,6 +196,16 @@
 	<servlet-name>group</servlet-name>
 	<url-pattern>/group</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>taglib</servlet-name>
+		<jsp-file>/WEB-INF/taglib.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>taglib</servlet-name>
+		<url-pattern>/taglib</url-pattern>
+		</servlet-mapping>
+	
 
 	<filter>
 		<filter-name>auth</filter-name>

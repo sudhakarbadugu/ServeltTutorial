@@ -1,11 +1,11 @@
 <!DOCTYPE html>
+<%@ include file="p-header.jsp" %>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-
 
 <button>Create parser</button>
 <h2>List of parsers<h2></h2>
@@ -32,7 +32,9 @@
 	<br><br>
 	<input type="file" name="upload">
 </form>
+	<a href=pwelcome>Back</a>
 </div>
 
 </body>
 </html>
+<%@ include file="footer.html" %>

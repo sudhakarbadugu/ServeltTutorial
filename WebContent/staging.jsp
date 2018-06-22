@@ -1,3 +1,4 @@
+<%@ include file="p-header.jsp" %>
 <div class="text text-success">
     <h1>This is staging directory.</h1>
 </div>
@@ -17,4 +18,6 @@
 	<input type="file" name="upload">           
 	<button class="btn btn-primary">Upload</button>
 </form>
+<a href="pwelcome">Back</a>
 </div>
+<%@ include file="footer.html" %>

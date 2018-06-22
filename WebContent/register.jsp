@@ -17,15 +17,19 @@
 </head>
 <body>
 	<%@ page import="com.conduent.servlet.user.dto.UserDto"%>
+	<%@ page import="com.conduent.servlet.user.dto.GroupDto"%>
+	<%@ page import="java.util.List"%>
 	<%@ page import="java.sql.Date" session="false"%>
-	<% 
-String operation = (String)request.getAttribute("operation");
-String headerName = "edit".equalsIgnoreCase(operation)? "Save User" : "Add User";
-%>
+	<%@ page import="com.conduent.servlet.service.GroupService"%>
+	<%@ page import="com.conduent.servlet.service.impl.GroupServiceImpl"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
+	
+<c:set property="headerName" value="${operation == 'edit' ? 'Save User' : 'Add User'}" scope="page" var="headerName"></c:set>
 
 	<div class="text text-danger">${errormassage}</div>
 
-	<h3><%= headerName %></h3>
+	<h3>${headerName}</h3>
 	<form method="post" action="rlogin">
 		FirstName: <input type="text" name="first_name"
 			value="${userDto.getFirstName()}" class="form-control" required>
@@ -38,11 +42,21 @@ String headerName = "edit".equalsIgnoreCase(operation)? "Save User" : "Add User"
 		<br> <input type="hidden" name="userId"
 			value="${userDto.getId()}" required>
 
+			<% 
+				List<GroupDto> groups = (List<GroupDto>) request.getAttribute("groups");
+				if(groups==null){
+					GroupService groupService1 = new GroupServiceImpl();
+					groups = groupService1.getAlGroup();
+					pageContext.setAttribute("groups", groups);
+				}
+			%>
 		<div class="form-group">
-			Group: <input type="checkbox"> staging <input type="checkbox">
-			opgen <input type="checkbox"> implementation
+			Group: 
+			<c:forEach items="${groups}" var="group">
+				<input type="checkbox" name="groups" value="${group.getGroupname()}">${group.getGroupname()}
+			</c:forEach>
 		</div>
-		<button><%= headerName %></button>
+		<button>${headerName}</button>
 		<input type="submit" value="Register"> <a href="user">Back</a>
 
 	</form>

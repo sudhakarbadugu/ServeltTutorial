@@ -103,8 +103,8 @@ public class StagingServlet extends HttpServlet {
 
 	private PrintWriter includeHeaderAndStagingContent(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("p-header.jsp");
-		requestDispatcher.include(req, resp);
+		PrintWriter out = resp.getWriter();
+		
 
 		//include admin page here if only user is admin
 		HttpSession session = req.getSession(false);
@@ -117,10 +117,7 @@ public class StagingServlet extends HttpServlet {
 		}
 		
 		
-		RequestDispatcher requestDispatcher1 = req.getRequestDispatcher("staging.html");
-		requestDispatcher1.include(req, resp);
 
-		PrintWriter out = resp.getWriter();
 		if (req.getAttribute("downloaded") != null) {
 			out.println("File is downloaded successfully");
 		}
@@ -128,9 +125,10 @@ public class StagingServlet extends HttpServlet {
 		if (req.getAttribute("uploadStatus") != null) {
 			out.println(req.getAttribute("uploadStatus"));
 		}
+		RequestDispatcher requestDispatcher1 = req.getRequestDispatcher("staging.jsp");
+		requestDispatcher1.forward(req, resp);
 
-		RequestDispatcher requestDispatcher3 = req.getRequestDispatcher("footer.html");
-		requestDispatcher3.include(req, resp);
+	
 
 		return out;
 	}

@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 	String INSERT_QUERY = "INSERT INTO T_USER (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD, CREATED_DATE) VALUES (?,?,?,?,?)";
 	
 	//modify the query to include all fields. and change where condition based on id.
-	String UPDATE_QUERY = "UPDATE T_USER SET FIRST_NAME=?,LAST_NAME=?,PASSWORD=? WHERE USERNAME=?";
+	String UPDATE_QUERY = "UPDATE T_USER SET FIRST_NAME=?,LAST_NAME=?,PASSWORD=?,USERNAME=? WHERE ID=?";
 	String DELETE_QUERY = "DELETE FROM T_USER WHERE ID=?";
 
 
@@ -109,16 +109,10 @@ public class UserDaoImpl implements UserDao {
 		try {
 			con = DatatbaseUtility.getConnection();
 			pstmt = con.prepareStatement(INSERT_QUERY);
-			String firstName = dto.getFirstName();
-			String lastName = dto.getLastName();
-
-			String username = dto.getUsername();
-			String password = dto.getPassword();
-
-			pstmt.setString(1, firstName);
-			pstmt.setString(2, lastName);
-			pstmt.setString(3, username);
-			pstmt.setString(4, password);
+			pstmt.setString(1, dto.getFirstName());
+			pstmt.setString(2, dto.getLastName());
+			pstmt.setString(3, dto.getUsername());
+			pstmt.setString(4, dto.getPassword());
 			pstmt.setDate(5, new Date(System.currentTimeMillis()));
 
 			int result = pstmt.executeUpdate();
@@ -142,14 +136,11 @@ public class UserDaoImpl implements UserDao {
 		try {
 			con = DatatbaseUtility.getConnection();
 			pstmt = con.prepareStatement(UPDATE_QUERY);
-			String firstName = dto.getFirstName();
-			String lastName = dto.getLastName();
-			String password = dto.getPassword();
-			String username = dto.getUsername();
-			pstmt.setString(1, firstName);
-			pstmt.setString(2, lastName);
-			pstmt.setString(3, password);
-			pstmt.setString(4, username);
+			pstmt.setString(1, dto.getFirstName());
+			pstmt.setString(2, dto.getLastName());
+			pstmt.setString(3, dto.getPassword());
+			pstmt.setString(4, dto.getUsername());
+			pstmt.setInt(5, dto.getId());
 			int result = pstmt.executeUpdate();
 			userupdated = result != 0;
 		} catch (SQLException e) {

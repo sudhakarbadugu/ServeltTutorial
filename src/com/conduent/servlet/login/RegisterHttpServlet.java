@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,6 +33,11 @@ public class RegisterHttpServlet extends HttpServlet {
 		String lastname = req.getParameter("last_name");
 		String username = req.getParameter("username");
 		String password = req.getParameter("pass");
+		
+		String[] parameterValues = req.getParameterValues("groups");
+		for(String groupnames:parameterValues) {
+			System.out.println("group name: "+groupnames);
+		}
 		UserDto dto = new UserDto();
 		dto.setFirstName(firstname);
 		dto.setLastName(lastname);
@@ -44,7 +50,7 @@ public class RegisterHttpServlet extends HttpServlet {
 			//show error to user when trying to edit the same name
 			if (username != null && password != null) {
 				String userId = req.getParameter("userId");
-				if (userId != null && !"-1".equals(userId)) {
+				if (userId != null && !"".equals(userId)) {
 					dto.setId(Integer.parseInt(userId));
 					try {
 						addUser = service.updateUser(dto);
@@ -77,6 +83,12 @@ public class RegisterHttpServlet extends HttpServlet {
 				requestDispatcher.forward(req, resp);
 			}
 		}
+	}
+	
+	public void saveUserGroup(UserDto dto,String[] parameterValues) {
+		
+		
+		
 	}
 
 }

@@ -20,7 +20,7 @@
 </form>
 <div class="text text-danger">${errormassage}</div>
 <h2>List of groups</h2>
-<div class="pre-scrollable">
+<div>
 	<table class='table table-striped'>
 		<tr>
 			<th>id</th>
@@ -30,11 +30,15 @@
 			<th>delete</th>
 		</tr>
 		<c:forEach items="${groups}" var="group">
+			<c:url value="group" var="groupEditURL">
+        		<c:param name="id" value="${group.id}"></c:param>
+        		<c:param name="operation" value="edit"></c:param>
+        	</c:url>
 			<tr>
 				<td>${group.id}</td>
 				<td>${group.groupname}</td>
 				<td>${group.groupdescription}</td>
-				<td><a href='group?id=${group.id}&operation=edit'>edit</a></td>
+				<td><a href='${groupEditURL}'>edit</a></td>
 				<td><a href='group?id=${group.id}&operation=delete'>delete</a></td>
 			</tr>
 		</c:forEach>

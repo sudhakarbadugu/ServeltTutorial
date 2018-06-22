@@ -48,7 +48,7 @@ public class GroupServlet extends HttpServlet {
 
 		if (groupname != null && groupdescription != null) {
 			String groupId = req.getParameter("groupId");
-			if (groupId != null && !"-1".equals(groupId)) {
+			if (groupId != null && !"".equals(groupId)) {
 				dto.setId(Integer.parseInt(groupId));
 				try {
 				sg.updateGroup(dto);

@@ -12,9 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.conduent.servlet.service.GroupService;
 import com.conduent.servlet.service.UserService;
 import com.conduent.servlet.service.impl.GroupException;
+import com.conduent.servlet.service.impl.GroupServiceImpl;
 import com.conduent.servlet.service.impl.UserServiceImpl;
+import com.conduent.servlet.user.dto.GroupDto;
 import com.conduent.servlet.user.dto.UserDto;
 
 public class UsersServlet extends HttpServlet {
@@ -27,6 +30,10 @@ public class UsersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		UserService users = new UserServiceImpl();
 		UserDto dto = new UserDto();
+		GroupService groupService = new GroupServiceImpl();
+		List<GroupDto> groups = groupService.getAlGroup();
+		req.setAttribute("groups", groups);
+		
 		String operation = req.getParameter("operation");
 		if (operation != null) {
 			String id = req.getParameter("id");
@@ -35,6 +42,8 @@ public class UsersServlet extends HttpServlet {
 			if ("delete".equals(operation))
 				users.deleteUser(dto);
 			else if("edit".equalsIgnoreCase(operation)) {
+				
+				
 				req.setAttribute("userDto", users.getUser(Integer.parseInt(id)));
 				req.setAttribute("operation", operation);
 				RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
