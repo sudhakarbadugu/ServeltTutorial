@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ include file="p-header.jsp" %>
+<jsp:include page="header.jsp" />
 <html>
 <head>
 <meta charset="ISO-8859-1">

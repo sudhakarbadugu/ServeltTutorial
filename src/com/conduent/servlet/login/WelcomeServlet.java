@@ -41,15 +41,8 @@ public class WelcomeServlet extends HttpServlet {
 		//get this value from database.
 		String groupName = (String)request.getAttribute("group");
 		if("admin".equals(username)) {
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("p-header.jsp");
-			requestDispatcher.include(request, response);
-
-			RequestDispatcher requestDispatcher1 = request.getRequestDispatcher("admin.html");
+			RequestDispatcher requestDispatcher1 = request.getRequestDispatcher("admin.jsp");
 			requestDispatcher1.include(request, response);
-			
-			RequestDispatcher requestDispatcher2 = request.getRequestDispatcher("footer.html");
-			requestDispatcher2.include(request, response);
-			
 		}
 		else if("staging".equalsIgnoreCase(groupName)) {
 			//staging

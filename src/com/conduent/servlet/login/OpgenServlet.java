@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class OpgenServlet extends HttpServlet {
 	@Override
@@ -19,17 +18,7 @@ public class OpgenServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		HttpSession session = req.getSession(false);
-		Object username = session.getAttribute("username");
-		req.setAttribute("username", username);
-
-		
-
-		if("admin".equals(username)) {
-			RequestDispatcher requestDispatcher2 = req.getRequestDispatcher("admin.html");
-			requestDispatcher2.include(req, resp);
-		}
-		
+	
 		if (req.getAttribute("downloaded opgen") != null) {
 			out.println("opgen File is downloaded successfully");
 		}

@@ -78,23 +78,17 @@ public class AuthenticationFilter implements Filter {
 				session.setAttribute("username", username);
 				session.setMaxInactiveInterval(60 * 15);
 
-				req.setAttribute("username", username);
+				session.setAttribute("username", username);
 				req.setAttribute("group", group);
 
 				chain.doFilter(req, resp);
 			} else {
 				System.out.println("Session is not avaiable, forwarding request to login page");
 				if (username != null || password != null) {
-					req.setAttribute("Errormessage", "Requested credentials are wrong");
+					req.setAttribute("errorMessage", "Requested credentials are wrong");
 				}
-				RequestDispatcher requestDispatcher = req.getRequestDispatcher("header.jsp");
-				requestDispatcher.include(req, resp);
-
-				RequestDispatcher requestDispatcher1 = req.getRequestDispatcher("hlogin.jsp");
+				RequestDispatcher requestDispatcher1 = req.getRequestDispatcher("login.jsp");
 				requestDispatcher1.include(req, resp);
-
-				RequestDispatcher requestDispatcher2 = req.getRequestDispatcher("footer.html");
-				requestDispatcher2.include(req, resp);
 			}
 		}
 	}

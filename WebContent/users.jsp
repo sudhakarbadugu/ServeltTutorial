@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@ include file="p-header.jsp"%>
-<%@ page import="java.util.List"%>
+<jsp:include page="header.jsp" />
+<%@ page import="java.util.List" session="false"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="com.conduent.servlet.user.dto.UserDto"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

@@ -48,14 +48,8 @@ public class LoginHttpServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("pwelcome");
 			requestDispatcher.forward(req, resp);
 		}else {
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("header.jsp");
-			requestDispatcher.include(req, resp);
-
-			RequestDispatcher requestDispatcher1 = req.getRequestDispatcher("hlogin.jsp");
+			RequestDispatcher requestDispatcher1 = req.getRequestDispatcher("login.jsp");
 			requestDispatcher1.include(req, resp);
-
-			RequestDispatcher requestDispatcher2 = req.getRequestDispatcher("footer.html");
-			requestDispatcher2.include(req, resp);
 		}
 	}
 

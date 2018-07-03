@@ -24,14 +24,6 @@ public class ImplementationServlet extends HttpServlet {
 		Object username = session.getAttribute("username");
 		req.setAttribute("username", username);
 
-		
-
-		if("admin".equals(username)) {
-			RequestDispatcher requestDispatcher2 = req.getRequestDispatcher("admin.html");
-			requestDispatcher2.include(req, resp);
-		}
-		
-
 		if (req.getAttribute("downloaded impl") != null) {
 			out.println("impl File is downloaded successfully");
 		}

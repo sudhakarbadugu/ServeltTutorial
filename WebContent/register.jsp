@@ -1,3 +1,4 @@
+<jsp:include page="header.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,3 +64,4 @@
 
 </body>
 </html>
+<%@ include file="footer.html" %>

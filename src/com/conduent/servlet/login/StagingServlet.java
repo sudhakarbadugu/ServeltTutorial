@@ -24,10 +24,6 @@ public class StagingServlet extends HttpServlet {
 		// usingCookies(req, resp);
 		// usingURLRewriting(req, resp);
 
-		HttpSession session = req.getSession(false);
-		Object username = session.getAttribute("username");
-		req.setAttribute("username", username);
-
 		includeHeaderAndStagingContent(req, resp);
 
 	}
@@ -109,14 +105,7 @@ public class StagingServlet extends HttpServlet {
 		//include admin page here if only user is admin
 		HttpSession session = req.getSession(false);
 		Object username = session.getAttribute("username");
-		req.setAttribute("username", username);
-		
-		if("admin".equals(username)) {
-			RequestDispatcher requestDispatcher2 = req.getRequestDispatcher("admin.html");
-			requestDispatcher2.include(req, resp);
-		}
-		
-		
+		req.setAttribute("username", username);		
 
 		if (req.getAttribute("downloaded") != null) {
 			out.println("File is downloaded successfully");

@@ -1,16 +1,5 @@
 <%@ page session="false" %>
-<html>
-<head>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-
+<jsp:include page="header.jsp" />
 <%
 // Set standard HTTP/1.1 no-cache headers.
 		response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
@@ -30,16 +19,13 @@
 				  <option value="Opgen">Opgen</option>
 				  <option value="Implementation">Implementation</option>
 				</select>	<br>
-				<div class="alert alert-danger">
-					<%
-    				if(null!=request.getAttribute("Errormessage"))
-    					{
-       					 out.println(request.getAttribute("Errormessage"));
-    					}
-					%>
+				<div class="text text-danger">
+					${errorMessage}
 				</div>
 	
 		<input type="submit" value="Login" class="btn btn-primary">
 		<a href="register.jsp" class="btn btn-success">Register here</a>
 	</form>
 </div>
+
+<%@ include file="footer.html" %>

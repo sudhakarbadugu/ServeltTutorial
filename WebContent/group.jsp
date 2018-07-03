@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@ include file="p-header.jsp"%>
+<jsp:include page="header.jsp" />
 <%@ page import="java.util.List"%>
 <%@ page import="com.conduent.servlet.user.dto.GroupDto"%>
 <h1>Welcome to groups</h1>

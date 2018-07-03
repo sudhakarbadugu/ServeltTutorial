@@ -1,4 +1,4 @@
-<%@ include file="p-header.jsp" %>
+<jsp:include page="header.jsp" />
 <div class="text text-success">
     <h1>This is staging directory.</h1>
 </div>
