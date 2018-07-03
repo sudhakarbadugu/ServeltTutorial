@@ -1,13 +1,6 @@
 package com.conduent.servlet.login;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +15,11 @@ import com.conduent.servlet.service.impl.UserServiceImpl;
 import com.conduent.servlet.user.dto.UserDto;
 
 public class RegisterHttpServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public RegisterHttpServlet() {
 
 	}
@@ -37,6 +35,9 @@ public class RegisterHttpServlet extends HttpServlet {
 		String[] parameterValues = req.getParameterValues("groups");
 		for(String groupnames:parameterValues) {
 			System.out.println("group name: "+groupnames);
+			
+			//opgen = 1
+			//group = gs.getGroup(groupnames)
 		}
 		UserDto dto = new UserDto();
 		dto.setFirstName(firstname);
@@ -69,6 +70,9 @@ public class RegisterHttpServlet extends HttpServlet {
 			message = e.getMessage();
 		}
 		
+		//call saveusergroupmethod
+		
+		
 		HttpSession session = req.getSession(false);
 		if(session == null) {
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("hlogin");
@@ -85,8 +89,13 @@ public class RegisterHttpServlet extends HttpServlet {
 		}
 	}
 	
-	public void saveUserGroup(UserDto dto,String[] parameterValues) {
+	private void saveUserGroup(UserDto dto, String[] groupNames) {
+		//dto.getId
 		
+		//for loop for groupnames
+		//gs.getGroup(groupname)
+		//group.getId();
+		//userGroupService.saveUsergroup(userId, groupId);
 		
 		
 	}

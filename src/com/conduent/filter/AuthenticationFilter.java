@@ -54,6 +54,7 @@ public class AuthenticationFilter implements Filter {
 		response.setHeader("Pragma", "no-cache");
 		if (session2 != null) {
 			System.out.println("Session is alread available and skipping login");
+			request.setAttribute("username", session2.getAttribute("username"));
 			chain.doFilter(req, resp);
 		} else {
 			String username = req.getParameter("username");
@@ -96,5 +97,4 @@ public class AuthenticationFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		System.out.println("Auth init");
 	}
-
 }

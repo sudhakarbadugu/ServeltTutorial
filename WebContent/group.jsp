@@ -3,6 +3,7 @@
 <jsp:include page="header.jsp" />
 <%@ page import="java.util.List"%>
 <%@ page import="com.conduent.servlet.user.dto.GroupDto"%>
+
 <h1>Welcome to groups</h1>
 
 <c:set property="headerName" value="${operation == 'edit' ? 'Update Group' : 'Add Group'}" scope="page" var="headerName"></c:set>
